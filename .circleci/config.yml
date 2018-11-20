@@ -1,3 +1,5 @@
+## Mostly lifted from CircleCI Go demo project
+
 version: 2 # use CircleCI 2.0
 jobs: # basic units of work in a run
   build: # runs not using Workflows must have a `build` job as entry point
@@ -24,9 +26,13 @@ jobs: # basic units of work in a run
           keys:
             - v1-pkg-cache
 
-      # get pytest - it's some kind of debian variant
-      - run: sudo apt-get update
-      - run: sudo apt-get install python-pytest
+      # add some python toys into the CI golang container - it's some kind of debian variant
+      - run: 
+          name: Retrieve python deps for testing
+          command: | 
+            sudo apt-get update
+            sudo apt-get install python-pip
+            sudo pip install pytest requests
 
       #  CircleCi's Go Docker image includes netcat
       #  this allows polling the DB port to confirm it is open before proceeding

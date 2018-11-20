@@ -9,4 +9,4 @@ container:
 	(cd metrics && docker build -t metrics .)
 
 test:
-	pytest test_client.py
+	py.test test_client.py
