@@ -59,7 +59,7 @@ jobs: # basic units of work in a run
 #          environment:
 #            CONTACTS_DB_URL: "postgres://circleci-demo-go@localhost:5432/circle_test?sslmode=disable"
 #            CONTACTS_DB_MIGRATIONS: /go/src/github.com/CircleCI-Public/circleci-demo-go/db/migrations
-          command: ./workdir/metrics
+          command: ./metrics/metrics
           background: true # keep service running and proceed to next step
 
       - run:
