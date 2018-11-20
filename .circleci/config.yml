@@ -32,7 +32,7 @@ jobs: # basic units of work in a run
           name: Retrieve python deps for testing
           command: | 
             sudo apt-get update
-            sudo apt-get python3-pytest python3-requests
+            sudo apt-get install python3-pytest python3-requests
 
       #  CircleCi's Go Docker image includes netcat
       #  this allows polling the DB port to confirm it is open before proceeding
