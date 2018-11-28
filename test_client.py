@@ -12,15 +12,15 @@ def client():
     return MetricsClient(os.environ['TESTURL'])
 
 def test_node(client):
-    (code) = client.post_metrics('/v1/metrics/node/node123/', '{}')
+    (code) = client.post_metrics('/v1/metrics/node/node123/', '{ "timeslice":8888.8, "cpu":3.4, "mem": 5.6 }')
     assert(code == 200)
 
 def test_nodes(client):
-    (code) = client.post_metrics("/v1/metrics/nodes", "{}")
+    (code) = client.post_metrics("/v1/metrics/nodes/foo234/process/proc567/", '{}')
     assert(code == 200)
 
 def test_analytics_nodes(client):
-    (code, json) = client.get_metrics("/v1/analytics/nodes")
+    (code, json) = client.get_metrics("/v1/analytics/nodes/average/444444.999")
     assert(code == 200)
 
 def test_analytics_procs(client):
