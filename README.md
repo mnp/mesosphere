@@ -11,8 +11,8 @@
 - [ ] unit test passes in circleci
 - [ ] integrate a cache/persistence service - influxdb?
 - [ ] app can persist some state
-- [ ] app can retrieve some metrics
-- [ ] integ test can push and pull and check sanity
+- [x] app can retrieve some metrics
+- [x] integ test can push and pull and check sanity
 - [ ] app supports aggregations
 - [ ] stand up >1 instance 
 - [ ] test >1 instance
@@ -21,22 +21,26 @@
 - [ ] kube helm spec instead of makefile tape
 - [ ] centralized logging 
 
-# Demo
+# Local Demo
 
 ```sh
-$ make container
-...
-Successfully tagged metrics:latest
+$ make start-minikube build-in-minikube run-in-minikube
 
-$ 
+$ curl $url
+Metrics Help
 
-$ curl  -X POST -d '{ "timeslice":9.9, "cpu":8.8 "mem": 7.7 }'  http://localhost:9911/v1/metrics/node/foo/
-{"status_code":400,"message":"Error decoding JSON"}
+	POST /v1/metrics/node/{nodename}/
+	POST /v1/metrics/nodes/{nodename}/process/{processname}/
+	GET /v1/analytics/nodes/average
+	GET /v1/analytics/processes/
+	GET /v1/analytics/processes/{processname}/
 
-$ curl -X POST -d '{ "timeslice":2222222.3, "cpu":3.4, "mem": 5.6 }'  http://localhost:9911/v1/metrics/node/foo/
+$ curl  -X POST -d '{ "timeslice":9999.9, "cpu":8.8, "mem": 7.7 }' $url/v1/metrics/node/foo/
 
-$ curl -X GET  http://localhost:9911/v1/analytics/nodes/average/2.3
-{"timeslice":2.3,"cpu":3.4,"mem":5.6}
+$ curl  -X POST -d '{ "timeslice":8888.8, "cpu":3.4, "mem": 5.6 }' $url/v1/metrics/node/bar/
+
+$ curl $url/v1/analytics/nodes/average/44444
+{"timeslice":44444,"cpu":6.1000004,"mem":6.6499996}
+
 ```
 
-# 

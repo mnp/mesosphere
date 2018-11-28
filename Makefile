@@ -42,7 +42,7 @@ start-minikube:
 
 build-in-minikube:
 	@eval $$(minikube docker-env) ;\
-	docker image build -t $(REPO):$(VERSION) -f Dockerfile .
+	docker build -t $(REPO):$(VERSION) -f Dockerfile .
 
 run-in-minikube:
 	eval $$(sudo minikube docker-env)                                          && \

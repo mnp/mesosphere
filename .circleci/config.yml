@@ -34,6 +34,9 @@ jobs: # basic units of work in a run
             sudo apt-get update
             sudo apt-get install python3-pytest python3-requests
 
+      # godeps
+      - run: go get github.com/julienschmidt/httprouter
+
       #  CircleCi's Go Docker image includes netcat
       #  this allows polling the DB port to confirm it is open before proceeding
       - run:
