@@ -50,7 +50,13 @@ jobs: # basic units of work in a run
             done
             echo Failed waiting for Postgres && exit 1
 
-      - run: make # pull and build dependencies for the project
+      - run: 
+          name: build the project
+          command: |
+            make
+            ls -l
+            ls -l metrics
+            test -f metrics/metrics || echo Nothing got built && exit 1
 
       - save_cache: # store cache in the /go/pkg directory
           key: v1-pkg-cache
