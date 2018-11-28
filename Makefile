@@ -33,7 +33,7 @@ container:
 	docker build -t $(REPO) .
 
 test:
-	py.test-3 test_client.py
+	TESTURL=http://localhost:9091 py.test-3 test_client.py
 
 test-minikube: start-minikube build-in-minikube run-in-minikube nuke-minikube
 
