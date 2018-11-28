@@ -1,5 +1,12 @@
 # Demonstration project
 
+* Local kubectl stands up a DB and app container
+* Local activity driven by Makefile
+* CircleCI trigger on checkin
+* hello metrics app in Golang
+* Client in Python
+* Unit test framework in Python
+
 # Features Implemented
 
 - [ ] https, authn, authz, cert management

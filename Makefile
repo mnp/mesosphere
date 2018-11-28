@@ -18,16 +18,16 @@ VERSION=1
 
 default: build
 
-workdir:
-	mkdir -p workdir
+metrics:
+	mkdir -p metrics
 
-build: workdir/metrics
+build: metrics/metrics
 
 build-native: $(GOFILES)
-	go build -o workdir/native-metrics .
+	go build -o metrics/native-metrics .
 
-workdir/metrics: $(GOFILES)
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o workdir/metrics .
+metrics/metrics: $(GOFILES)
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o metrics/metrics .
 
 container:
 	docker build -t $(REPO) .
@@ -55,7 +55,7 @@ run-in-minikube:
 	echo service is at $$url ;\
 	curl $$url
 
-test-in-minikube:	
+test-in-minikube:
 	url=$$(sudo minikube service --url hello-metrics) ;\
 	echo service is at $$url ;\
 	TESTURL=url py.test test_client.py
